@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -27,16 +28,20 @@ public class AppPDF extends JFrame {
 	setLocationRelativeTo(null);
 
 	// Set the header
+	JPanel panel = new JPanel(new GridBagLayout());
+	GridBagConstraints c = new GridBagConstraints();
+
 	JLabel header = new JLabel("Генератор на оферти");
 	Font font = new Font("Times New Roman", Font.BOLD, 20);
 	header.setFont(font);
+	header.setBorder(new EmptyBorder(10, 0, 0, 0));
 	add(header, BorderLayout.NORTH);
 	header.setHorizontalAlignment(SwingConstants.CENTER);
 
 	// Create panel for all the fields
-	JPanel panel = new JPanel(new GridBagLayout());
+	panel = new JPanel(new GridBagLayout());
 	JLabel nameLabel = new JLabel("Име");
-	GridBagConstraints c = new GridBagConstraints();
+	c = new GridBagConstraints();
 	c.gridx = 0;
 	c.gridy = 1;
 	c.weightx = 0.5;
