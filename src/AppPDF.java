@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -71,6 +73,24 @@ public class AppPDF extends JFrame {
 	c.gridx = 1;
 	panel.add(dateChooser, c);
 
+	JLabel typeLabel = new JLabel("Вид продукт");
+	c = new GridBagConstraints();
+	c.gridx = 0;
+	c.gridy = 3;
+	c.weightx = 0.5;
+	panel.add(typeLabel, c);
+
+	JTextArea typeField = new JTextArea();
+	typeField.setPreferredSize(new Dimension(300, 30));
+	typeField.setLineWrap(true);
+	typeField.setWrapStyleWord(true);
+	JScrollPane scrollPane = new JScrollPane(typeField);
+	scrollPane.setPreferredSize(new Dimension(300, 60));
+
+	c.gridx = 1;
+	c.gridy = 3;
+	panel.add(scrollPane, c);
+
 	JButton saveButton = new JButton("Запазване");
 	saveButton.addActionListener(new ActionListener() {
 	    @Override
@@ -89,7 +109,6 @@ public class AppPDF extends JFrame {
 	    }
 	});
 
-	add(panel);
 	JPanel buttonPanel = new JPanel();
 	buttonPanel.add(saveButton);
 
