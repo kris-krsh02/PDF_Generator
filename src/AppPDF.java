@@ -6,6 +6,8 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import javax.swing.JButton;
@@ -19,8 +21,13 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
 public class AppPDF extends JFrame {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private static final int WIDTH = 500;
-    protected String name;
+    private String name;
+    private String date;
 
     public AppPDF() {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,6 +76,10 @@ public class AppPDF extends JFrame {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
 		name = nameField.getText();
+		Date selectedDate = (Date) dateChooser.getDate();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		date = dateFormat.format(selectedDate) + " г.";
+		System.out.println(date);
 		try {
 		    new PDF_Gen(name);
 		} catch (IOException e1) {
