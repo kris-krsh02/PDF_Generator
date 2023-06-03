@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -13,6 +14,7 @@ import java.util.Locale;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -37,6 +39,7 @@ public class AppPDF extends JFrame {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setSize(WIDTH, WIDTH);
 	setLocationRelativeTo(null);
+	setTitle("Генератор на оферти");
 
 	// Set the header
 	JPanel panel = new JPanel(new GridBagLayout());
@@ -120,20 +123,24 @@ public class AppPDF extends JFrame {
 	c.gridy = 6;
 	panel.add(advancePercentageLabel, c);
 
-	JTextField advancePercentageField = new JTextField();
-	advancePercentageField.setPreferredSize(new Dimension(300, 30));
+	String[] percentageOptions = { "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "65",
+		"70", "75", "80", "85", "90", "95", "100" };
+	JComboBox<String> advancePercentageComboBox = new JComboBox<>(percentageOptions);
+	advancePercentageComboBox.setPreferredSize(new Dimension(300, 30));
 	c.gridx = 1;
-	panel.add(advancePercentageField, c);
+	advancePercentageComboBox.setBackground(Color.WHITE);
+	advancePercentageComboBox.setSelectedItem(percentageOptions[5]);
+	panel.add(advancePercentageComboBox, c);
 
 	advancePercentageLabel.setVisible(false);
-	advancePercentageField.setVisible(false);
+	advancePercentageComboBox.setVisible(false);
 
 	advanceBox.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
 		boolean isSelected = advanceBox.isSelected();
 		advancePercentageLabel.setVisible(isSelected);
-		advancePercentageField.setVisible(isSelected);
+		advancePercentageComboBox.setVisible(isSelected);
 	    }
 	});
 
