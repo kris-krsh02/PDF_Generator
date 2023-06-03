@@ -3,6 +3,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -51,7 +53,8 @@ public class AppPDF extends JFrame {
 	panel = new JPanel(new GridBagLayout());
 	JLabel nameLabel = new JLabel("Име");
 	c = new GridBagConstraints();
-	c.gridx = 0;
+	c.insets = new Insets(0, 0, 10, 0);
+	// c.anchor = GridBagConstraints.WEST; // Set anchor to the left c.gridx = 0;
 	c.gridy = 1;
 	c.weightx = 0.5;
 	panel.add(nameLabel, c);
@@ -74,7 +77,6 @@ public class AppPDF extends JFrame {
 	panel.add(dateChooser, c);
 
 	JLabel typeLabel = new JLabel("Вид продукт");
-	c = new GridBagConstraints();
 	c.gridx = 0;
 	c.gridy = 3;
 	c.weightx = 0.5;
@@ -90,6 +92,52 @@ public class AppPDF extends JFrame {
 	c.gridx = 1;
 	c.gridy = 3;
 	panel.add(scrollPane, c);
+
+	JLabel priceLabel = new JLabel("Цена");
+	c.gridx = 0;
+	c.gridy = 4;
+	panel.add(priceLabel, c);
+
+	JTextField priceField = new JTextField();
+	priceField.setPreferredSize(new Dimension(300, 30));
+	c.gridx = 1;
+	panel.add(priceField, c);
+
+	JLabel advanceLabel = new JLabel("Аванс");
+	c.gridx = 0;
+	c.gridy = 5;
+	panel.add(advanceLabel, c);
+
+	JCheckBox advanceBox = new JCheckBox();
+	c.gridx = 1;
+	c.gridy = 5;
+
+	panel.add(advanceBox, c);
+
+	// Additional field for advance percentage
+	JLabel advancePercentageLabel = new JLabel("Аванс (%)");
+	c.gridx = 0;
+	c.gridy = 6;
+	panel.add(advancePercentageLabel, c);
+
+	JTextField advancePercentageField = new JTextField();
+	advancePercentageField.setPreferredSize(new Dimension(300, 30));
+	c.gridx = 1;
+	panel.add(advancePercentageField, c);
+
+	advancePercentageLabel.setVisible(false);
+	advancePercentageField.setVisible(false);
+
+	advanceBox.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+		boolean isSelected = advanceBox.isSelected();
+		advancePercentageLabel.setVisible(isSelected);
+		advancePercentageField.setVisible(isSelected);
+	    }
+	});
+
+	// -------------------------------------------------------
 
 	JButton saveButton = new JButton("Запазване");
 	saveButton.addActionListener(new ActionListener() {
